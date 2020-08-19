@@ -1,0 +1,10 @@
+	<% if book.favorited_by?(current_user) %>
+        <!-- いいねボタンのlink_toにremote:trueを追加。通常であれば、link_toで呼ばれるアクションに対応するhtml.erbファイルを呼び出すところ、js.erbファイルを呼び出せるようになる。 -->
+        <%= link_to book_favorites_path(book), method: :delete, remote: true do %>
+            <span class="glyphicon glyphicon-heart"><%= book.favorites.count %></span>
+        <% end %>
+    <% else %>
+        <%= link_to book_favorites_path(book), method: :post, remote: true do %>
+            <span class="glyphicon glyphicon-heart-empty"><%= book.favorites.count %></span>
+        <% end %>
+    <% end %>
